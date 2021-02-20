@@ -1,6 +1,6 @@
 class cfgVehicles {
-    class LSV_01_unarmed_base_F; // base class of the vehicle
-    class B_LSV_01_unarmed_F: LSV_01_unarmed_base_F { // change the config of the quad bike
+    class Car_F; // base class of the vehicle
+    class LSV_01_base_F: Car_F { // change the config of the quad bike
         class vxf { // framework
            class interaction { // to let the framework know these are buttons
                 class engineOnButton { // name class for the button

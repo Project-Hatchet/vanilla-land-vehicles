@@ -6,13 +6,13 @@ class CfgPatches {
         units[] = {};
         weapons[] = {};
         requiredVersion = REQUIRED_VERSION;
-        requiredAddons[] = {"ace_common"};
+        requiredAddons[] = {"hatchet_vanilla_main"};
         author = "";
-        authors[] = {"Hatchet team"};
-        authorUrl = "";
+        authors[] = {""};
         VERSION_CONFIG;
     };
 };
 
+#include "config\mfdDefines.hpp"
+#include "config\cfgVehicles.hpp"
 #include "CfgEventHandlers.hpp"
-#include "CfgModuleCategories.hpp"

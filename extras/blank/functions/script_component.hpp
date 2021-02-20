@@ -1,1 +1,1 @@
-#include "\z\hatchet_vanilla\addons\dagor\script_component.hpp"
+#include "\z\hatchet_vanilla\addons\blank\script_component.hpp"
