@@ -1,11 +1,6 @@
 #define COMPONENT dagor
-#define COMPONENT_BEAUTIFIED dagor
+#define COMPONENT_BEAUTIFIED Dagor
 #include "\z\hatchet_vanilla\addons\main\script_mod.hpp"
-
-// #define DEBUG_MODE_FULL
-// #define DISABLE_COMPILE_CACHE
-// #define CBA_DEBUG_SYNCHRONOUS
-// #define ENABLE_PERFORMANCE_COUNTERS
 
 #ifdef DEBUG_ENABLED_dagor
     #define DEBUG_MODE_FULL

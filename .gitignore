@@ -4,5 +4,12 @@ release/*
 texHeaders.bin
 *.swp
 *.swo
-*.biprivatekey
 Thumbs.db
+
+## Added by HEMTT
+releases/*
+*.biprivatekey
+keys/*
+.hemtt/local.toml
+addons/*.pbo
+####

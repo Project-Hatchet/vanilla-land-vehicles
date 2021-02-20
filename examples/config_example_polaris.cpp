@@ -26,7 +26,7 @@ class cfgVehicles {
                     label = "Lights on";
                     radius = 0.3;
                     buttonDown = "vehicle player setpilotLight true;";
-                }; //lights on button ^^ 
+                }; //lights on button ^^
                  class lightsOffbutton {
                     condition = "isLightOn (vehicle player)";
                     positionType = "coordinates";

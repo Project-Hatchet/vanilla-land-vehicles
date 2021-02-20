@@ -1,12 +1,10 @@
-name = "Advanced Combat Environment 3 - Project Template";
+name = "Project Hatchet - Vanilla Land Vehicles";
 picture = "logo_hatchet_vanilla_ca.paa";
 actionName = "GitHub";
-action = "https://github.com/acemod/arma-project-template";
+action = "https://github.com/project-hatchet/vanilla-land-vehicles";
 description = "Project Template";
 logo = "logo_hatchet_vanilla_ca.paa";
 logoOver = "logo_hatchet_vanilla_ca.paa";
-tooltip = "ACE3 Project Template";
-tooltipOwned = "ACE3 Project Template Owned";
-overview = "Advanced Combat Environment 3 Project Template";
-author = "ACE3 Team";
+overview = "Project Hatchet - Vanilla Land Vehicles";
+author = "Project Hatchet";
 overviewPicture = "logo_ace3_ca.paa";

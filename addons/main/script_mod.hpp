@@ -2,19 +2,15 @@
 
 #define MAINPREFIX z
 #define PREFIX hatchet_vanilla
+#define SUBPREFIX addons
 
 #include "script_version.hpp"
 
-#define VERSION MAJOR.MINOR.PATCHLVL.BUILD
-#define VERSION_AR MAJOR,MINOR,PATCHLVL,BUILD
-
-#define hatchet_vanilla_TAG hatchet_vanilla
-
 // MINIMAL required version for the Mod. Components can specify others..
-#define REQUIRED_VERSION 1.56
+#define REQUIRED_VERSION 2.00
 
 #ifdef COMPONENT_BEAUTIFIED
-    #define COMPONENT_NAME QUOTE(hatchet_vanilla - COMPONENT_BEAUTIFIED)
+  #define COMPONENT_NAME QUOTE(Hatchet Vanilla - COMPONENT_BEAUTIFIED)
 #else
-    #define COMPONENT_NAME QUOTE(hatchet_vanilla - COMPONENT)
+  #define COMPONENT_NAME QUOTE(Hatchet Vanilla - COMPONENT)
 #endif
