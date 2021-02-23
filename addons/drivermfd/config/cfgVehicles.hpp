@@ -17,18 +17,18 @@ class cfgVehicles {
 					condition = "true";
 					class MFD_L1 {
 						positionType = "coordinates";
-						position[] = {-0.833,0.312142,-0.535};
+						position[] = {-0.833,0.312142,-0.568};
 						label = "Next WP";
 						radius = 0.05;
 						buttonDown = "[_this # 0, ""cycle"", 1] call hatchet_vanilla_waypoints_fnc_interaction;";
 					};
 					class MFD_L2: MFD_L1 {
-						position[] = {-0.833,0.312142,-0.568};
+						position[] = {-0.833,0.312142,-0.603};
 						label = "Prev WP";
 						buttonDown = "[_this # 0, ""cycle"", 1] call hatchet_vanilla_waypoints_fnc_interaction;";
 					};
 					class MFD_L3: MFD_L1 {
-						position[] = {-0.833,0.312142,-0.603};
+						position[] = {-0.833,0.312142,-0.638};
 						label = "Import waypoints";
 						buttonDown = "[_this # 0, ""import""] call hatchet_vanilla_waypoints_fnc_interaction;";
 					};
@@ -49,7 +49,20 @@ class cfgVehicles {
                 enableParallax = 0; // this means whether the MFD moves based on your head position, so this is used in a HUD
                 font = "RobotoCondensedLight";
                 turret[] = {-1}; // if you use any weapon related information in the MFD, it will use this turret's weapons
-                class Bones {}; // here we can define bones, this is used for moving elements, like a waypoint overlay
+                class Bones {
+					class WP_DIR_BONE
+					{
+						type="vector";
+						source="wppoint";
+						pos0[] = 	{0.00+0.35 ,0.19};
+						pos10[] = 	{0.13+0.35 ,0.19};
+					};
+					class WP_DIR_LIMITS
+					{
+						type = "limit";
+						limits[] = {0.1,0,0.6,1};
+					};
+				}; // here we can define bones, this is used for moving elements, like a waypoint overlay
                 class Draw { // here we can draw elements
 					class backgroundWrapper {
 						color[] = BACKGROUND_BLUE;
