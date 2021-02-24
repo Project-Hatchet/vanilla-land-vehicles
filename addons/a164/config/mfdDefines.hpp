@@ -23,6 +23,17 @@
         right[] = {{X + 0.06*SIZE, Y-0.035*SIZE}, 1}; \
         down[] = {{X-0.002*SIZE, Y + 0.035*SIZE}, 1};
 
+#define TEXT_MFD_R_SCALE_STATIC(CLASS,X,Y,SIZE,ALIGN,TEXT) \
+    class CLASS { \
+        type = "text"; \
+        align = ALIGN; \
+        scale = 1; \
+        pos[] = {{X-0.002*SIZE, Y-0.035*SIZE}, 1}; \
+        right[] = {{X + 0.06*SIZE, Y-0.035*SIZE}, 1}; \
+        down[] = {{X-0.002*SIZE, Y + 0.035*SIZE}, 1}; \
+		source = "static"; \
+		text = TEXT; \
+	};
 
 #define SIDE_POLYGON(CLASS,X,Y) \
 	class CLASS { \

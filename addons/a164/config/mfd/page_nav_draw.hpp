@@ -22,12 +22,13 @@ TEXT_MFD_R_SCALE(WAYPT_TOF,0.6,0.80,0.8,"right")
 
 class divider_bottom {
 	type = "line";
-    width = 4;
+    width = 2;
+	lineType = 1;
 	points[] ={
-		{
-			{{0, 0.8},1},
-			{{1, 0.8},1}
-		}
+		{{0.1, 0.775},1},
+		{{0.9, 0.775},1},{},
+		{{0.1, 0.89},1},
+		{{0.9, 0.89},1}
 	};
 }; // poly_arrow_wp_next
 
@@ -71,3 +72,21 @@ class poly_arrow_wp_prev {
 		}
 	};
 }; // poly_arrow_wp_prev
+
+#include "page_nav_sensor.hpp"
+
+
+class planeLines
+{
+	type = "line";
+	width = 6;
+	lineType = 0;
+	points[] = {
+		{"HSICenter", 1, {0,-0.02}, 1},
+		{"HSICenter", 1, {0, 0.04}, 1},{},
+		{"HSICenter", 1, {-0.03,0}, 1},
+		{"HSICenter", 1,  {0.03,0}, 1},{},
+		{"HSICenter", 1, {-0.01,0.028}, 1},
+		{"HSICenter", 1, { 0.01,0.028}, 1},
+	};
+};

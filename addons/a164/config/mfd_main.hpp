@@ -8,6 +8,12 @@ enableParallax = 0; // this means whether the MFD moves based on your head posit
 font = "EtelkaMonospaceProBold"; // default font
 turret[] = {-1}; // if you use any weapon related information in the MFD, it will use this turret's weapons
 class Bones {
+	class MFDCenter
+	{
+		type = "fixed";
+		pos[] = {0.5, 0.5};
+	}; // MFDCenter
+	#include "mfd\page_nav_bones.hpp"
 	#include "mfd\page_dsms_bones.hpp"
 };
 class Draw {

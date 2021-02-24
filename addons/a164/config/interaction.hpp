@@ -22,7 +22,7 @@ class PAGE_NAV {
     buttonDown = "[_this # 0, ""cycle"", 1] call hatchet_vanilla_waypoints_fnc_interaction;";
   };
   MFD_BTN(LEFT_4,LEFT_4_POS,"WP Prev")
-    buttonDown = "[_this # 0, ""cycle"", 1] call hatchet_vanilla_waypoints_fnc_interaction;";
+    buttonDown = "[_this # 0, ""cycle"", -1] call hatchet_vanilla_waypoints_fnc_interaction;";
   };
   MFD_BTN(LEFT_5,LEFT_5_POS,"Import microdagr waypoints")
     buttonDown = "[_this # 0, ""import""] call hatchet_vanilla_waypoints_fnc_interaction;";

@@ -2,6 +2,9 @@ class cfgVehicles {
 	class Plane_CAS_01_dynamicLoadout_base_F;
 	class B_Plane_CAS_01_dynamicLoadout_F: Plane_CAS_01_dynamicLoadout_base_F {
 		class MFD {
+			class HMD {
+				#include "hmd\HMD.hpp"
+			};
 			class HUD {
 				#include "hud.hpp"
 			};
@@ -31,7 +34,7 @@ class cfgVehicles {
 				};
 			};
 			class interaction {
-				crossHair = 1;
+				crossHair = 0;
 				class MFD_LEFT {
 					#undef MFD_PAGE_INDEX
 					#define MFD_PAGE_INDEX MFD_L_PAGE_INDEX
