@@ -1,4 +1,18 @@
 color[]={0,0.83999997,0,1};
+TEXT_MFD_R_SCALE(CCIP_TEXT,0.37,0.08,0.6,"center")
+	source="static";
+	sourceScale=1;
+	sourceIndex=1;
+	text="CCIP";
+}; // WP_COUNT
+
+TEXT_MFD_R_SCALE(CCRP_TEXT,0.62,0.08,0.6,"center")
+	source="static";
+	sourceScale=1;
+	sourceIndex=1;
+	text="CCRP";
+}; // WP_COUNT
+
 class PylonSelected6
 {
 	condition="PylonSelected6>0";

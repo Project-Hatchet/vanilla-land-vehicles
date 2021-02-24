@@ -5,14 +5,69 @@ borderLeft=0;
 borderRight=0;
 borderTop=0;
 borderBottom=0.2;
-color[]={0.15000001,1,0.15000001,1};
+color[] = {0.082,1,0.039,1};
+alpha = 0.5;
 enableParallax=1;
+class material {
+	ambient[] = {1, 1, 1, 1};
+	diffuse[] = {0.5, 0.5, 0.5, 1};
+	emissive[] = {100, 100, 100, 50};
+};
 class Bones
 {
 	class PlaneOrientation
 	{
 		type="fixed";
 		pos[]={0.498,0.38};
+	};
+	class CCRPReticle
+	{
+		type="fixed";
+		pos[]={0.498,0.7};
+	};
+	class CCRPBankAngleWaypoint
+	{
+		type="rotational";
+		source="horizonBank";
+		sourceScale=1;
+		center[]={0,0};
+		min=-3.1415927;
+		max=3.1415927;
+		minAngle = 0;
+		maxAngle = -360;
+		aspectRatio=1.25;
+	};
+	class CCRPBankAngle
+	{
+		type="rotational";
+		source="horizonBank";
+		sourceScale=1;
+		center[]={0.498,0.7};
+		min=-3.1415927;
+		max=3.1415927;
+		minAngle=0;
+		maxAngle=360;
+		aspectRatio=1.25;
+	};
+	class CCRPimpactDist {
+		type="linear";
+		source = "impactDistance";
+		sourceIndex = 0;
+		min=0;
+		max=5000;
+		sourceScale=1;
+		minPos[]={0,0.5};
+		maxPos[]={0,0};
+	};
+	class CCRPwaypointDist {
+		type="linear";
+		source = "WPDist";
+		sourceIndex = 0;
+		min=0;
+		max=5000;
+		sourceScale=1;
+		minPos[]={0,-0.5};
+		maxPos[]={0,0};
 	};
 	class WeaponAim
 	{
@@ -283,14 +338,23 @@ class Bones
 };
 class Draw
 {
-	alpha="user3";
-	color[]=
-	{
-		"user0",
-		"user1",
-		"user2"
-	};
+	color[] = {0.082,0.4,0.039,1};
+	alpha = 1;
 	condition="on";
+	class WP_Point_Square {
+		type="line";
+		width = 3;
+		points[] ={
+			{"WPPoint", { 0   , -0.001},1},
+			{"WPPoint", { 0   ,  0.001},1},{},
+			{"WPPoint", { 0   , -0.025},1},
+			{"WPPoint", { 0.025, 0.0},1},
+			{"WPPoint", { 0.015, 0.015},1},
+			{"WPPoint", {-0.015, 0.015},1},
+			{"WPPoint", {-0.025, 0.0},1},
+			{"WPPoint", { 0   , -0.025},1}
+		}; // points
+	}; // WP_Point_Square
 	class PlaneOrientationCrosshair
 	{
 		clipTL[]={0,1};
@@ -1475,10 +1539,386 @@ class Draw
 			};
 		};
 	};
+	class BombCrosshairCCRPGroup {
+		type="group";
+		condition="bomb*(user10>0)";
+		class WPLine {
+			width = 4;
+			type = "line";
+			points[] = {
+				{"WPPoint", 1, "LimitWaypoint", 1, {0, 0}, 1},
+				{"WPPoint", 1, "LimitWaypoint", 1, {"CCRPBankAngleWaypoint", 0, -1}, 1}
+			};
+		};
+		class ReleaseLine {
+			width = 4;
+			type = "line";
+			points[] = {
+				{"CCRPReticle", 1, "CCRPwaypointDist", 1, "CCRPimpactDist", 1, {0, 0.01}, 1},{"CCRPReticle", 1, "CCRPwaypointDist", 1, "CCRPimpactDist", 1, {0.0020791169081775932, 0.009781476007338056}, 1},{"CCRPReticle", 1, "CCRPwaypointDist", 1, "CCRPimpactDist", 1, {0.0040673664307580015, 0.009135454576426009}, 1},{"CCRPReticle", 1, "CCRPwaypointDist", 1, "CCRPimpactDist", 1, {0.0058778525229247315, 0.008090169943749474}, 1},{"CCRPReticle", 1, "CCRPwaypointDist", 1, "CCRPimpactDist", 1, {0.007431448254773943, 0.0066913060635885825}, 1},{"CCRPReticle", 1, "CCRPwaypointDist", 1, "CCRPimpactDist", 1, {0.008660254037844387, 0.005000000000000001}, 1},{"CCRPReticle", 1, "CCRPwaypointDist", 1, "CCRPimpactDist", 1, {0.009510565162951536, 0.0030901699437494747}, 1},{"CCRPReticle", 1, "CCRPwaypointDist", 1, "CCRPimpactDist", 1, {0.009945218953682734, 0.0010452846326765347}, 1},{"CCRPReticle", 1, "CCRPwaypointDist", 1, "CCRPimpactDist", 1, {0.009945218953682734, -0.0010452846326765334}, 1},{"CCRPReticle", 1, "CCRPwaypointDist", 1, "CCRPimpactDist", 1, {0.009510565162951536, -0.0030901699437494734}, 1},{"CCRPReticle", 1, "CCRPwaypointDist", 1, "CCRPimpactDist", 1, {0.008660254037844387, -0.0049999999999999975}, 1},{"CCRPReticle", 1, "CCRPwaypointDist", 1, "CCRPimpactDist", 1, {0.007431448254773943, -0.0066913060635885825}, 1},{"CCRPReticle", 1, "CCRPwaypointDist", 1, "CCRPimpactDist", 1, {0.005877852522924732, -0.008090169943749474}, 1},{"CCRPReticle", 1, "CCRPwaypointDist", 1, "CCRPimpactDist", 1, {0.004067366430758004, -0.009135454576426007}, 1},{"CCRPReticle", 1, "CCRPwaypointDist", 1, "CCRPimpactDist", 1, {0.0020791169081775932, -0.009781476007338056}, 1},{"CCRPReticle", 1, "CCRPwaypointDist", 1, "CCRPimpactDist", 1, {0, -0.01}, 1},{"CCRPReticle", 1, "CCRPwaypointDist", 1, "CCRPimpactDist", 1, {-0.0020791169081775906, -0.009781476007338056}, 1},{"CCRPReticle", 1, "CCRPwaypointDist", 1, "CCRPimpactDist", 1, {-0.004067366430757998, -0.00913545457642601}, 1},{"CCRPReticle", 1, "CCRPwaypointDist", 1, "CCRPimpactDist", 1, {-0.005877852522924731, -0.008090169943749474}, 1},{"CCRPReticle", 1, "CCRPwaypointDist", 1, "CCRPimpactDist", 1, {-0.00743144825477394, -0.006691306063588585}, 1},{"CCRPReticle", 1, "CCRPwaypointDist", 1, "CCRPimpactDist", 1, {-0.008660254037844385, -0.0050000000000000044}, 1},{"CCRPReticle", 1, "CCRPwaypointDist", 1, "CCRPimpactDist", 1, {-0.009510565162951536, -0.0030901699437494755}, 1},{"CCRPReticle", 1, "CCRPwaypointDist", 1, "CCRPimpactDist", 1, {-0.009945218953682734, -0.0010452846326765336}, 1},{"CCRPReticle", 1, "CCRPwaypointDist", 1, "CCRPimpactDist", 1, {-0.009945218953682734, 0.00104528463267653}, 1},{"CCRPReticle", 1, "CCRPwaypointDist", 1, "CCRPimpactDist", 1, {-0.009510565162951536, 0.0030901699437494725}, 1},{"CCRPReticle", 1, "CCRPwaypointDist", 1, "CCRPimpactDist", 1, {-0.008660254037844387, 0.005000000000000001}, 1},{"CCRPReticle", 1, "CCRPwaypointDist", 1, "CCRPimpactDist", 1, {-0.007431448254773946, 0.006691306063588578}, 1},{"CCRPReticle", 1, "CCRPwaypointDist", 1, "CCRPimpactDist", 1, {-0.005877852522924734, 0.008090169943749474}, 1},{"CCRPReticle", 1, "CCRPwaypointDist", 1, "CCRPimpactDist", 1, {-0.0040673664307580015, 0.00913545457642601}, 1},{"CCRPReticle", 1, "CCRPwaypointDist", 1, "CCRPimpactDist", 1, {-0.002079116908177599, 0.009781476007338056}, 1},{"CCRPReticle", 1, "CCRPwaypointDist", 1, "CCRPimpactDist", 1, {0, 0.01}, 1}
+			};
+		};
+		class WPDistance
+		{
+			type="text";
+			source="WPDist";
+			sourceScale=0.001;
+			sourcePrecision=1;
+			max=15;
+			align="center";
+			scale=1;
+			pos[]=
+			{
+				"CCRPReticle", 1, "CCRPwaypointDist", 1, "CCRPimpactDist", 1,{-0.0020000001+0.03,-0.02},1
+			};
+			right[]=
+			{
+				"CCRPReticle", 1, "CCRPwaypointDist", 1, "CCRPimpactDist", 1,{0.045000002+0.03,-0.02},1
+			};
+			down[]=
+			{
+				"CCRPReticle", 1, "CCRPwaypointDist", 1, "CCRPimpactDist", 1,{-0.0020000001+0.03,0.02},1
+			};
+		};
+		class Distance
+		{
+			type="text";
+			source="ImpactDistance";
+			sourceScale=0.001;
+			sourcePrecision=1;
+			max=15;
+			align="center";
+			scale=1;
+			pos[]=
+			{
+				"CCRPReticle",
+				{-0.0020000001,0.11},
+				1
+			};
+			right[]=
+			{
+				"CCRPReticle",
+				{0.045000002,0.11},
+				1
+			};
+			down[]=
+			{
+				"CCRPReticle",
+				{-0.0020000001,0.15000001},
+				1
+			};
+		};
+		class BombCrosshair
+		{
+			width=4;
+			type="line";
+			points[]=
+			{
+				
+				{
+					"CCRPReticle",
+					{0,0.1125},
+					1
+				},
+				
+				{
+					"CCRPReticle",
+					{0,0.1},
+					1
+				},
+				{},
+				
+				{
+					"CCRPReticle",
+					{-0.090000004,0},
+					1
+				},
+				
+				{
+					"CCRPReticle",
+					{-0.079999998,0},
+					1
+				},
+				{},
+				
+				{
+					"CCRPReticle",
+					{0.090000004,0},
+					1
+				},
+				
+				{
+					"CCRPReticle",
+					{0.079999998,0},
+					1
+				},
+				{},
+				
+				{
+					"CCRPReticle",
+					{0,-0.0024999999},
+					1
+				},
+				
+				{
+					"CCRPReticle",
+					{0,0.0024999999},
+					1
+				},
+				{},
+				
+				{
+					"CCRPReticle",
+					{-0.0020000001,0},
+					1
+				},
+				
+				{
+					"CCRPReticle",
+					{0.0020000001,0},
+					1
+				},
+				{},
+				
+				{
+					"CCRPReticle",
+					{0,-0.1},
+					1
+				},
+				
+				{
+					"CCRPReticle",
+					{0.013888,-0.098480001},
+					1
+				},
+				
+				{
+					"CCRPReticle",
+					{0.02736,-0.093970001},
+					1
+				},
+				
+				{
+					"CCRPReticle",
+					{0.039999999,-0.086599998},
+					1
+				},
+				
+				{
+					"CCRPReticle",
+					{0.051424,-0.0766},
+					1
+				},
+				
+				{
+					"CCRPReticle",
+					{0.061280001,-0.064280003},
+					1
+				},
+				
+				{
+					"CCRPReticle",
+					{0.069279999,-0.050000001},
+					1
+				},
+				
+				{
+					"CCRPReticle",
+					{0.075176001,-0.034200002},
+					1
+				},
+				
+				{
+					"CCRPReticle",
+					{0.078783996,-0.01736},
+					1
+				},
+				
+				{
+					"CCRPReticle",
+					{0.079999998,0},
+					1
+				},
+				
+				{
+					"CCRPReticle",
+					{0.078783996,0.01736},
+					1
+				},
+				
+				{
+					"CCRPReticle",
+					{0.075176001,0.034200002},
+					1
+				},
+				
+				{
+					"CCRPReticle",
+					{0.069279999,0.050000001},
+					1
+				},
+				
+				{
+					"CCRPReticle",
+					{0.061280001,0.064280003},
+					1
+				},
+				
+				{
+					"CCRPReticle",
+					{0.051424,0.0766},
+					1
+				},
+				
+				{
+					"CCRPReticle",
+					{0.039999999,0.086599998},
+					1
+				},
+				
+				{
+					"CCRPReticle",
+					{0.02736,0.093970001},
+					1
+				},
+				
+				{
+					"CCRPReticle",
+					{0.013888,0.098480001},
+					1
+				},
+				
+				{
+					"CCRPReticle",
+					{0,0.1},
+					1
+				},
+				
+				{
+					"CCRPReticle",
+					{-0.013888,0.098480001},
+					1
+				},
+				
+				{
+					"CCRPReticle",
+					{-0.02736,0.093970001},
+					1
+				},
+				
+				{
+					"CCRPReticle",
+					{-0.039999999,0.086599998},
+					1
+				},
+				
+				{
+					"CCRPReticle",
+					{-0.051424,0.0766},
+					1
+				},
+				
+				{
+					"CCRPReticle",
+					{-0.061280001,0.064280003},
+					1
+				},
+				
+				{
+					"CCRPReticle",
+					{-0.069279999,0.050000001},
+					1
+				},
+				
+				{
+					"CCRPReticle",
+					{-0.075176001,0.034200002},
+					1
+				},
+				
+				{
+					"CCRPReticle",
+					{-0.078783996,0.01736},
+					1
+				},
+				
+				{
+					"CCRPReticle",
+					{-0.079999998,0},
+					1
+				},
+				
+				{
+					"CCRPReticle",
+					{-0.078783996,-0.01736},
+					1
+				},
+				
+				{
+					"CCRPReticle",
+					{-0.075176001,-0.034200002},
+					1
+				},
+				
+				{
+					"CCRPReticle",
+					{-0.069279999,-0.050000001},
+					1
+				},
+				
+				{
+					"CCRPReticle",
+					{-0.061280001,-0.064280003},
+					1
+				},
+				
+				{
+					"CCRPReticle",
+					{-0.051424,-0.0766},
+					1
+				},
+				
+				{
+					"CCRPReticle",
+					{-0.039999999,-0.086599998},
+					1
+				},
+				
+				{
+					"CCRPReticle",
+					{-0.02736,-0.093970001},
+					1
+				},
+				
+				{
+					"CCRPReticle",
+					{-0.013888,-0.098480001},
+					1
+				},
+				
+				{
+					"CCRPReticle",
+					{0,-0.1},
+					1
+				},
+				{},
+				
+				{
+					"CCRPReticle",
+					{0,-0.1},
+					1
+				},
+				{
+					"CCRPReticle",
+					{0,-1},
+					1
+				},
+			};
+		};
+	};
 	class BombCrosshairGroup
 	{
 		type="group";
-		condition="bomb";
+		condition="bomb*(user10<1)";
 		class BombCrosshair
 		{
 			width=4;

@@ -52,9 +52,9 @@ class cfgVehicles {
 					#undef LEFT_5_POS
 					#define BOTTOM_1_POS {0.159065,5.47158,0.535086}
 					#define BOTTOM_2_POS {0.179065,5.47158,0.535086}
-					#define LEFT_3_POS {-0.287065+0.39813,5.50158,0.63786}
-					#define LEFT_4_POS {-0.287065+0.39813,5.49558,0.61586}
-					#define LEFT_5_POS {-0.287065+0.39813,5.4908,0.59586}
+					#define LEFT_3_POS {0.108065,5.50158,0.63786}
+					#define LEFT_4_POS {0.108065,5.49558,0.61586}
+					#define LEFT_5_POS {0.108065,5.4908,0.59586}
 					#include "interaction.hpp"
 				};
 			};
