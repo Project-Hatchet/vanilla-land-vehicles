@@ -1,12 +1,8 @@
 name = "Project Hatchet - Vanilla vehicle interaction";
-picture = "logo_hatchet_vanilla_ca.paa";
 actionName = "GitHub";
 action = "https://github.com/Project-Hatchet/vanilla-land-vehicles";
 description = "Project Hatchet - Vanilla vehicle interaction";
-logo = "logo_hatchet_vanilla_ca.paa";
-logoOver = "logo_hatchet_vanilla_ca.paa";
 tooltip = "Project Hatchet - Vanilla vehicle interaction";
 tooltipOwned = "Project Hatchet - Vanilla vehicle interaction Owned";
 overview = "Project Hatchet - Vanilla vehicle interaction";
 author = "Hatchet Team";
-overviewPicture = "logo_hatchet_vanilla_ca.paa";

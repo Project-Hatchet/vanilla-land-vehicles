@@ -18,7 +18,7 @@ if ((count customWaypointPosition) > 0) then {
 };
 
 private _waypointDirection = _vehicle getDir _position;
-_vehicle setUserMFDvalue [0, _waypointDirection];
+_vehicle setUserMFDValue [0, _waypointDirection];
 
 private _gridArea = [worldName] call ace_common_fnc_getMGRSdata;
 private _grid = [_position] call ace_common_fnc_getMapGridFromPos;
@@ -32,11 +32,11 @@ _vehicle setUserMFDText [3, format["%1/%2", _waypointIndex + 1, count (waypoints
 // {
 //     _waypointPosition = waypointPosition [group player, (currentWaypoint group player) + _forEachIndex - 1];
 //     if (!(_waypointPosition isEqualTo [0,0,0])) then {
-//         _vehicle setUserMFDvalue [_x # 0, _vehicle getRelDir _waypointPosition];
-//         _vehicle setUserMFDvalue [_x # 1, ((_vehicle distance2D _waypointPosition) * _zoomLevel) / (hatchet_vanilla_waypoints_mapSize / 2)];
+//         _vehicle setUserMFDValue [_x # 0, _vehicle getRelDir _waypointPosition];
+//         _vehicle setUserMFDValue [_x # 1, ((_vehicle distance2D _waypointPosition) * _zoomLevel) / (hatchet_vanilla_waypoints_mapSize / 2)];
 //     } else {
-//         _vehicle setUserMFDvalue [_x # 0, -1];
-//         _vehicle setUserMFDvalue [_x # 1, -1];
+//         _vehicle setUserMFDValue [_x # 0, -1];
+//         _vehicle setUserMFDValue [_x # 1, -1];
 //     };
 // } forEach [[2,3],[4,5],[6,7],[8,9],[33,34],[35,36]];
 

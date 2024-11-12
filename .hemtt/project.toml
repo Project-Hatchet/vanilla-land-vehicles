@@ -1,0 +1,33 @@
+name = "Hatchet Vanilla Vehicles"
+prefix = "hatchet_vanilla"
+author = "Project Hatchet"
+mainprefix = "z"
+
+[files]
+include = [
+  "mod.cpp",
+  "README.md",
+  "LICENSE"
+]
+
+[version]
+git_hash = 0
+
+[asc]
+enabled = true
+exclude = [
+  "/initsettings.sqf",
+  "/initkeybinds.sqf",
+  "/xeh_prep.sqf",
+]
+
+[hemtt.config]
+preset = "Hemtt"
+
+[hemtt.release]
+folder = "htc_vanilla"
+
+[hemtt.launch]
+workshop = [
+  "450814997", # CBA_A3's Workshop ID
+]

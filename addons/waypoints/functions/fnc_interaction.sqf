@@ -29,14 +29,14 @@ switch (_action) do {
             };
             [group player, _forEachIndex] setWaypointVisible false;
         } forEach _microDagrWaypoints;
-        _vehicle setUserMFDvalue _value;
+        _vehicle setUserMFDValue _value;
     };
     // case "location": {
     //     // fms_locations_page_list
     //     private _index = fms_locations_page_index * 4 + _value;
     //     if (_index < count fms_locations_page_list) then {
     //         fms_locations_selected = fms_locations_page_list # _index # 1;
-    //         _vehicle setUserMFDvalue _pageData;
+    //         _vehicle setUserMFDValue _pageData;
     //     };
     // };
     // // this is used 
@@ -56,7 +56,7 @@ switch (_action) do {
     //     if (!_autoNext) then {
     //         _wp setWaypointStatements ["false", ""];
     //     };
-    //     _vehicle setUserMFDvalue _pageData;
+    //     _vehicle setUserMFDValue _pageData;
     // };
 };
 

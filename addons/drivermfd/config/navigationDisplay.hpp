@@ -22,7 +22,7 @@ class nav_wp_valid {
         source="static";
         sourceScale=2;
         sourceIndex=3;
-		text="MICRO-DAGR IMPORT"
+				text="MICRO-DAGR IMPORT";
     }; // WP_COUNT
 
 	SIDE_POLYGON(BTN_L1,0.088,0.2+(SIDE_BTN_SPACING*0))
