@@ -13,21 +13,14 @@ include = [
 [version]
 git_hash = 0
 
-[asc]
-enabled = true
-exclude = [
-  "/initsettings.sqf",
-  "/initkeybinds.sqf",
-  "/xeh_prep.sqf",
-]
-
 [hemtt.config]
 preset = "Hemtt"
 
 [hemtt.release]
 folder = "htc_vanilla"
 
-[hemtt.launch]
+[hemtt.launch.default]
 workshop = [
   "450814997", # CBA_A3's Workshop ID
+  "2941986336", # Hatchet Interaction Framework - Stable Version
 ]
