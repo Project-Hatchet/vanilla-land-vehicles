@@ -1,49 +1,66 @@
-class cfgVehicles {
-    class LSV_01_unarmed_base_F; // base class of the vehicle
-    class B_LSV_01_unarmed_F: LSV_01_unarmed_base_F { // change the config of the quad bike
-        class vxf { // framework
-           class interaction { // to let the framework know these are buttons
-                class engineOnButton { // name class for the button
-                    condition = "!(isEngineOn (vehicle player))" // ! = "not" so if engine is not on it will display this button
-                    positionType = "coordinates"; // type of position to mark location of button(can also be memory points)
-                    position[] = {-0.708986,0.790938,-0.727872}; // coordinates to that button location
-                    label = "Engine on"; // what the button will show as text when you look at it
-                    radius = 0.3; // how close to the button you have to look to activate it
-                    buttonDown = "vehicle player engineOn true;"; // if the player presses the button this is what it will do
-                }; // engineOnButton^^
-                class engineOffButton {
-                    condition = "isEngineOn (vehicle player)"; // here the condition is "on" because there is no ! infront of it so if the engine is on it will display this button
-                    positionType = "coordinates";
-                    position[] = {-0.708986,0.790938,-0.727872};
-                    label = "Engine off";
-                    radius = 0.3;
-                    buttonDown = "vehicle player engineOn false;";
-                }; // engineOffButton^^
-                class lightsOnbutton {
-                    condition = "!(isLighton(vehicle player))";
-                    positionType = "coordinates";
-                    position[] = {-0.807986,0.790938,-0.727872};
-                    label = "Lights on";
-                    radius = 0.3;
-                    buttonDown = "vehicle player setpilotLight true;";
-                }; //lights on button ^^ 
-                 class lightsOffbutton {
-                    condition = "isLightOn (vehicle player)";
-                    positionType = "coordinates";
-                    position[] = {-0.807986,0.790938,-0.727872};
-                    label = "Lights off";
-                    radius = 0.3;
-                    buttonDown = "vehicle player setpilotLight false;";
-                }; // lights off button^^
+// Minimal, current example: driver-seat engine and lights buttons on the Prowler.
+// This is the same shape as addons/a3/config/LSV_01.hpp, written out in full
+// without the shared #include snippets so every key is visible.
+//
+// Quick test without rebuilding the mod: save this file, then in the debug console
+//   diag_mergeConfigFile ["C:\path\to\config_example_polaris.cpp"]
+// and restart the mission (Esc > Restart). Vehicles spawned after that use it.
+//
+// Variables available inside the code strings:
+//   hct_vehicle  the vehicle the framework is bound to
+//   hct_player   the local player
+//   _this        in condition: the vehicle object
+//                in buttonDown/buttonUp: [vehicle]  (so _this # 0 is the vehicle)
+
+class CfgVehicles {
+    class Car_F;
+    class LSV_01_base_F: Car_F {           // base class, so every faction variant inherits
+        class hct_driver {                 // seat class: driver only
+            class interaction {            // the framework reads only this (and modules)
+
+                class EngineOn {           // a group: its condition gates everything inside
+                    condition = "!isEngineOn hct_vehicle";
+                    class engineOnButton {
+                        positionType = "coordinates";                    // or "anim" with a selection name
+                        position[] = {-0.717837, 0.870723, -0.764648};   // model space, from hct_util_fnc_findModelSpaceCoordinates
+                        label = "Engine on";                             // shown when the cursor is over it
+                        radius = 0.1;                                    // screen-space size, scaled by FOV; 0.05-0.1 for small controls
+                        buttonDown = "hct_vehicle engineOn true;";
+                    };
+                };
+                class EngineOff {
+                    condition = "isEngineOn hct_vehicle";
+                    class engineOffButton {
+                        positionType = "coordinates";
+                        position[] = {-0.717837, 0.870723, -0.764648};
+                        label = "Engine off";
+                        radius = 0.1;
+                        buttonDown = "hct_vehicle engineOn false;";
+                    };
+                };
+
+                class LightsOn {
+                    condition = "!isLightOn hct_vehicle";
+                    class lightsOnButton {
+                        positionType = "coordinates";
+                        position[] = {-0.828958, 0.869669, -0.765562};
+                        label = "Lights on";
+                        radius = 0.1;
+                        buttonDown = "hct_vehicle setPilotLight true;";
+                    };
+                };
+                class LightsOff {
+                    condition = "isLightOn hct_vehicle";
+                    class lightsOffButton {
+                        positionType = "coordinates";
+                        position[] = {-0.828958, 0.869669, -0.765562};
+                        label = "Lights off";
+                        radius = 0.1;
+                        buttonDown = "hct_vehicle setPilotLight false;";
+                    };
+                };
+
             };
         };
     };
 };
-
-// diag_mergeConfigFile ["c:\path\to\file"] exectute this in your arma 3 debug console then press "local exec" make sure to press "restart" after or the effects wont take place
-// script above adds 2 basic buttons to the polaris
-
-// to find all of the script information visit these links
-// https://github.com/Project-Hatchet/hatchet-framework/wiki/MFD-Editing-notes This link will show you how to use the framework and how to find memory points
-// https://community.bistudio.com/wiki/A3_MFD_config_reference This link is used for making MFD displays
-// https://community.bistudio.com/wiki/Category:Arma_3:_Scripting_Commands This link will show you all of the config stuff you can use if its not on this list it wont work
