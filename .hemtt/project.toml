@@ -18,9 +18,3 @@ preset = "Hemtt"
 
 [hemtt.release]
 folder = "htc_vanilla"
-
-[hemtt.launch.default]
-workshop = [
-  "450814997", # CBA_A3's Workshop ID
-  "2941986336", # Hatchet Interaction Framework - Stable Version
-]

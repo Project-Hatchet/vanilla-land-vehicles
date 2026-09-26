@@ -1,63 +1,22 @@
 /*
  * hatchet_vanilla_waypoints_fnc_interaction
  *
- * handle interaction of waypoint page
+ * Handle interaction with the waypoint page. Called from MFD bezel buttons.
  *
- * params (array)[(object) vehicle, (string) action, (misc) _value]
+ * params (array)[(object) vehicle, (string) action, (misc) value]
+ *   action "cycle": value is the step to move the current waypoint by (+1 / -1)
  */
 
-params ["_vehicle", "_action", "_value"];
+params ["_vehicle", "_action", ["_value", 0]];
 
 switch (_action) do {
     case "cycle": {
         private _group = group player;
-        private _waypointIndex = currentWaypoint _group;
-        _group setCurrentWaypoint [_group, (_waypointIndex + _value)];
+        private _count = count waypoints _group;
+        if (_count == 0) exitWith {};
+        private _index = ((currentWaypoint _group) + _value) max 0 min (_count - 1);
+        _group setCurrentWaypoint [_group, _index];
     };
-    case "import": {
-        private _waypoints = waypoints group player;
-        { // forEach _wayPoints;
-            deleteWaypoint [group player, 0];
-        } forEach _wayPoints;
-        private _autoNext = false;
-        private _microDagrWaypoints = [] call ace_microdagr_fnc_deviceGetWaypoints;
-        { // forEach _microDagrWaypoints
-            group player addWaypoint [_x # 1, -1, _forEachIndex, _x # 0];
-            [group player, _forEachIndex] setWaypointDescription (_x # 0);
-            if (!_autoNext) then {
-                [group player, _forEachIndex] setWaypointStatements ["false", ""];
-            };
-            [group player, _forEachIndex] setWaypointVisible false;
-        } forEach _microDagrWaypoints;
-        _vehicle setUserMFDValue _value;
-    };
-    // case "location": {
-    //     // fms_locations_page_list
-    //     private _index = fms_locations_page_index * 4 + _value;
-    //     if (_index < count fms_locations_page_list) then {
-    //         fms_locations_selected = fms_locations_page_list # _index # 1;
-    //         _vehicle setUserMFDValue _pageData;
-    //     };
-    // };
-    // // this is used 
-    // case "store_save_waypoint": {
-    //     if (isNil "fms_locations_selected") exitWith {};
-    //     private _microDagrWaypoints = [] call ace_microdagr_fnc_deviceGetWaypoints;
-    //     private _location = fms_locations_selected;
-    //     private _height = getTerrainHeightASL (locationPosition _location);
-    //     private _position = locationPosition _location;
-    //     _position set [2, _height];
-    //     private _newWP = [text _location, _position];
-    //     _microDagrWaypoints pushBack _newWP;
-    //     ACE_player setVariable ["ace_microdagr_waypoints", _microDagrWaypoints];
-    //     private _wp = group player addWaypoint [_newWP # 1, -1, (count waypoints group player), _newWP # 0];
-    //     _wp setWaypointDescription (_newWP # 0);
-    //     private _autoNext = _vehicle getVariable ["hatchet_vanilla_waypoints_import_autoCycle", false];
-    //     if (!_autoNext) then {
-    //         _wp setWaypointStatements ["false", ""];
-    //     };
-    //     _vehicle setUserMFDValue _pageData;
-    // };
 };
 
 [_vehicle] call hatchet_vanilla_waypoints_fnc_perSecond;

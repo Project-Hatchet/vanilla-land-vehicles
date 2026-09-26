@@ -6,9 +6,10 @@ class CfgPatches {
         units[] = {};
         weapons[] = {};
         requiredVersion = REQUIRED_VERSION;
-        requiredAddons[] = {"hatchet_vanilla_main"};
-        author = "";
-        authors[] = {""};
+        // Module loop lives in HCT_core, bezel buttons in HCT_interaction.
+        requiredAddons[] = {"hatchet_vanilla_main", "hatchet_vanilla_waypoints", "HCT_core", "HCT_interaction"};
+        author = AUTHOR;
+        authors[] = {"Project Hatchet"};
         VERSION_CONFIG;
     };
 };

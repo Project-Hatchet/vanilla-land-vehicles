@@ -16,8 +16,3 @@ hemtt.exe
 .hemttprivatekey
 .hemttout
 ####
-
-## SCONS
-release
-.sconsign.dblite
-####

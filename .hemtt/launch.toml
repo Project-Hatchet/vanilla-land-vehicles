@@ -1,0 +1,33 @@
+# hemtt launch            -> default profile
+# hemtt launch vn         -> adds S.O.G. Prairie Fire for the vn addon
+# hemtt launch dev        -> framework development branch instead of stable
+
+[default]
+workshop = [
+    "450814997",  # CBA_A3
+    "2941986336", # Hatchet Interaction Framework (stable)
+]
+parameters = [
+    "-skipIntro",
+    "-noSplash",
+    "-showScriptErrors",
+    "-window",
+]
+
+[vn]
+extends = "default"
+dlc = [
+    "S.O.G. Prairie Fire",
+]
+
+[dev]
+workshop = [
+    "450814997",  # CBA_A3
+    "2403978406", # Hatchet Interaction Framework (unlisted development branch)
+]
+parameters = [
+    "-skipIntro",
+    "-noSplash",
+    "-showScriptErrors",
+    "-window",
+]

@@ -1,44 +1,46 @@
 /*
  * hatchet_vanilla_waypoints_fnc_perSecond
  *
- * handles occasional updates of data for waypoints
+ * Occasional updates of waypoint data for the driver MFD.
+ * Started by the framework module loop; see addons/drivermfd/config/cfgVehicles.hpp.
  *
  * params (array)[(object) vehicle]
+ *
+ * MFD slots written here:
+ *   userText 0: time to go (h:m:s)
+ *   userText 1: waypoint name
+ *   userText 2: waypoint grid
+ *   userText 3: waypoint index / count
+ *   userValue 0: bearing to waypoint
  */
 
 params ["_vehicle"];
 
-private _wayPoint = [group player, currentWaypoint group player];
+private _group = group player;
+private _wayPoint = [_group, currentWaypoint _group];
 private _position = waypointPosition _wayPoint;
-if ((count customWaypointPosition) > 0) then {
+private _hasWaypoint = (waypoints _group) isNotEqualTo [] && {_position isNotEqualTo [0,0,0]};
+
+if (customWaypointPosition isNotEqualTo []) then {
     _position = customWaypointPosition;
+    _hasWaypoint = true;
     _vehicle setUserMFDText [1, "MAP MARK"];
 } else {
-    _vehicle setUserMFDText [1, waypointDescription _wayPoint];
+    _vehicle setUserMFDText [1, ["NO WPT", waypointDescription _wayPoint] select _hasWaypoint];
 };
 
-private _waypointDirection = _vehicle getDir _position;
-_vehicle setUserMFDValue [0, _waypointDirection];
+if (!_hasWaypoint) exitWith {
+    _vehicle setUserMFDValue [0, 0];
+    _vehicle setUserMFDText [0, "--:--:--"];
+    _vehicle setUserMFDText [2, ""];
+    _vehicle setUserMFDText [3, "0/0"];
+};
 
-private _gridArea = [worldName] call ace_common_fnc_getMGRSdata;
-private _grid = [_position] call ace_common_fnc_getMapGridFromPos;
-private _waypointGridString = format ["%1    %2    %3    %4", _gridArea select 0, _gridArea select 1, _grid select 0, _grid select 1];
-_vehicle setUserMFDText [2, _waypointGridString];
-private _waypointIndex = currentWaypoint group player;
-_vehicle setUserMFDText [3, format["%1/%2", _waypointIndex + 1, count (waypoints group player)]];
+_vehicle setUserMFDValue [0, _vehicle getDir _position];
 
-// private _zoomLevel = _vehicle getVariable ["MAP_ZoomMult", 1];
-// private ["_waypointPosition"];
-// {
-//     _waypointPosition = waypointPosition [group player, (currentWaypoint group player) + _forEachIndex - 1];
-//     if (!(_waypointPosition isEqualTo [0,0,0])) then {
-//         _vehicle setUserMFDValue [_x # 0, _vehicle getRelDir _waypointPosition];
-//         _vehicle setUserMFDValue [_x # 1, ((_vehicle distance2D _waypointPosition) * _zoomLevel) / (hatchet_vanilla_waypoints_mapSize / 2)];
-//     } else {
-//         _vehicle setUserMFDValue [_x # 0, -1];
-//         _vehicle setUserMFDValue [_x # 1, -1];
-//     };
-// } forEach [[2,3],[4,5],[6,7],[8,9],[33,34],[35,36]];
+// Vanilla grid; the previous ACE MGRS helpers are gone with the ACE dependency.
+_vehicle setUserMFDText [2, mapGridPosition _position];
+_vehicle setUserMFDText [3, format ["%1/%2", (currentWaypoint _group) + 1, count waypoints _group]];
 
 if (speed _vehicle > 2) then {
     private _speedMS = vectorMagnitude (velocity _vehicle);
@@ -46,6 +48,7 @@ if (speed _vehicle > 2) then {
     private _tofHours = floor (_tofSecondsTotal / 60 / 60);
     private _tofMinutes = floor (_tofSecondsTotal / 60 % 60);
     private _tofSeconds = round (_tofSecondsTotal % 60);
-    private _tofStr = format["%1:%2:%3",_tofHours, _tofMinutes, _tofSeconds];
-    _vehicle setUserMFDText [0, _tofStr];
+    _vehicle setUserMFDText [0, format ["%1:%2:%3", _tofHours, _tofMinutes, _tofSeconds]];
+} else {
+    _vehicle setUserMFDText [0, "--:--:--"];
 };

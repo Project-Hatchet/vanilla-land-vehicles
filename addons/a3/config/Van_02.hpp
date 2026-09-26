@@ -1,5 +1,5 @@
 class Van_02_base_F: Truck_F {
-  class hct_driver { // framework
+  class hct_driver { // framework: driver seat only
     class interaction { // to let the framework know these are buttons
 
       #undef POSITION
@@ -12,7 +12,7 @@ class Van_02_base_F: Truck_F {
           positionType = "coordinates"; // type of position to mark location of button(can also be memory points)
           position[] = {-0.493691,2.58485,-0.0858202}; // coordinates to that button location
           label = "Horn"; // what the button will show as text when you look at it
-          radius = 0.3; // how close to the button you have to look to activate it
+          radius = 0.1; // 0.3 let the horn steal the engine switch on the Van
           buttonDown = "[hct_vehicle, 'CarHorn'] call BIS_fnc_fire;"; // if the player presses the button this is what it will do
         }; // hornButton^^
       };

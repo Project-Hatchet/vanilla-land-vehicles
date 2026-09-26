@@ -1,1 +1,1 @@
-#include "\z\hatchet_vanilla\addons\util\script_component.hpp"
+#include "\z\hatchet_vanilla\addons\vn\script_component.hpp"

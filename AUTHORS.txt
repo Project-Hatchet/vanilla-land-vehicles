@@ -1,6 +1,7 @@
-﻿# CONTRIBUTOR LIST
+# CONTRIBUTOR LIST
+# Add yourself when your first pull request is merged: "Name (GitHub handle) - what you did"
 
 # CORE TEAM
-
+Project Hatchet
 
 # CONTRIBUTORS
