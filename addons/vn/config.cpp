@@ -1,19 +1,20 @@
 #include "script_component.hpp"
 
-// information on this addon specifically
+// Interaction configs for S.O.G. Prairie Fire (CDLC) vehicles.
+// Skipped automatically when the CDLC is not loaded.
 class CfgPatches {
     class ADDON {
         name = COMPONENT_NAME;
         units[] = {};
         weapons[] = {};
         requiredVersion = REQUIRED_VERSION;
-        requiredAddons[] = {"HCT_main", "loadorder_f_vietnam"}; // Include addons from this mod that contain code or assets you depend on. Affects loadorder. Including main as an example here.
+        requiredAddons[] = {"hatchet_vanilla_main", "HCT_core", "HCT_interaction", "loadorder_f_vietnam"};
         skipWhenMissingDependencies = 1;
-        authors[] = {"Hatchet Team"}; // sub array of authors, considered for the specific addon, can be removed or left empty {}
+        author = AUTHOR;
+        authors[] = {"Project Hatchet"};
         VERSION_CONFIG;
     };
 };
 
-// configs go here
 #include "CfgEventHandlers.hpp"
 #include "config\CfgVehicles.hpp"

@@ -1,5 +1,5 @@
 class Van_02_base_F: Truck_F {
-  class hct_driver { // framework
+  class hct_driver { // framework: driver seat only
     class interaction { // to let the framework know these are buttons
 
       #undef POSITION

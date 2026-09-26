@@ -1,5 +1,5 @@
 class Offroad_01_base_F: Car_F {
-  class hct { // framework
+  class hct_driver { // framework: driver seat only
     class interaction { // to let the framework know these are buttons
 
       #undef POSITION

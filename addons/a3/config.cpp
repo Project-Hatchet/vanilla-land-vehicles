@@ -1,18 +1,21 @@
 #include "script_component.hpp"
 
-// information on this addon specifically
+// Interaction configs for base-game (and official DLC) land vehicles.
+// Config only: one file per vehicle family under config\, applied to the
+// *_base_F class so every faction variant inherits it.
 class CfgPatches {
     class ADDON {
         name = COMPONENT_NAME;
         units[] = {};
         weapons[] = {};
         requiredVersion = REQUIRED_VERSION;
-        requiredAddons[] = {"HCT_main"}; // Include addons from this mod that contain code or assets you depend on. Affects loadorder. Including main as an example here.
-        authors[] = {"Your Name", "Other Author"}; // sub array of authors, considered for the specific addon, can be removed or left empty {}
+        // Module loop lives in HCT_core, click points in HCT_interaction.
+        requiredAddons[] = {"hatchet_vanilla_main", "HCT_core", "HCT_interaction"};
+        author = AUTHOR;
+        authors[] = {"Project Hatchet"};
         VERSION_CONFIG;
     };
 };
 
-// configs go here
 #include "CfgEventHandlers.hpp"
 #include "config\CfgVehicles.hpp"

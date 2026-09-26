@@ -1,5 +1,9 @@
+// S.O.G. Prairie Fire UH-1.
+// PLACEHOLDER: the cockpit coordinates below were copied from the Van_02 config
+// and have not been authored on the UH-1 model. The cabin door levers use real
+// selection names and should work. Do not treat the cockpit part as a reference.
 class vn_air_uh1_01_base: vn_helicopter_base {
-  class hct { // framework
+  class hct_driver { // framework: pilot seat only
     class interaction { // to let the framework know these are buttons
       #ifdef POS_ENGINE
         #undef POS_ENGINE
