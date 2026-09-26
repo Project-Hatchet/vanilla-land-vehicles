@@ -1,5 +1,5 @@
 blank_issues_enabled: false
 contact_links:
   - name: Claim a vehicle to work on
-    url: https://github.com/Project-Hatchet/vanilla-land-vehicles/blob/production/README.md#coverage
+    url: https://github.com/Project-Hatchet/vanilla-land-vehicles/blob/main/README.md#coverage
     about: Check the coverage table first, then open a "Vehicle coverage" issue to claim one.

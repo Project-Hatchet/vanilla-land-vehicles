@@ -3,14 +3,13 @@ name: Check
 on:
   push:
     branches:
-      - production
+      - main
     paths-ignore:
       - "**.md"
       - "LICENSE"
+  # No paths-ignore here: a required status check must run on every PR,
+  # or docs-only PRs can never be merged.
   pull_request:
-    paths-ignore:
-      - "**.md"
-      - "LICENSE"
 
 concurrency:
   group: check-${{ github.ref }}

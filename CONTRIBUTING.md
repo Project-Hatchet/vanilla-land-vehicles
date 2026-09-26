@@ -77,7 +77,7 @@ Rules:
 - **CDLC vehicles** go in their own addon with `skipWhenMissingDependencies = 1`, like `addons/vn`.
 
 ## 6. Open the pull request
-- Branch from `production`, one family per branch.
+- Branch from `main`, one family per branch.
 - Attach one screenshot per seat with the labels visible on the right controls.
 - Update the coverage table in README.md.
 - Add yourself to AUTHORS.txt.
