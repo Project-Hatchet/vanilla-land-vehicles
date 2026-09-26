@@ -1,0 +1,44 @@
+name: Check
+
+on:
+  push:
+    branches:
+      - production
+    paths-ignore:
+      - "**.md"
+      - "LICENSE"
+  pull_request:
+    paths-ignore:
+      - "**.md"
+      - "LICENSE"
+
+concurrency:
+  group: check-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Validate SQF
+        run: python tools/sqf_validator.py
+
+      - name: Validate config style
+        run: python tools/config_style_checker.py
+
+      - name: Setup HEMTT
+        uses: arma-actions/hemtt@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: HEMTT check
+        run: hemtt check -e --pedantic
