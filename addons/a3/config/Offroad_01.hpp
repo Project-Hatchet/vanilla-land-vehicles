@@ -12,7 +12,7 @@ class Offroad_01_base_F: Car_F {
           positionType = "coordinates"; // type of position to mark location of button(can also be memory points)
           position[] = {-0.423183,0.612029,0.027044}; // coordinates to that button location
           label = "Horn"; // what the button will show as text when you look at it
-          radius = 0.3; // how close to the button you have to look to activate it
+          radius = 0.1; // 0.3 let the horn steal the engine switch on the Van
           buttonDown = "[hct_vehicle, 'SportCarHorn'] call BIS_fnc_fire;"; // if the player presses the button this is what it will do
         }; // hornButton^^
       };
