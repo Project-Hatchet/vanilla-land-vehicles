@@ -1,18 +1,20 @@
 /*
  * hatchet_vanilla_waypoints_fnc_perFrame
  *
- * handles per frame updates of data for FMS
+ * Per-frame update of waypoint distance for the driver MFD.
  *
  * params (array)[(object) vehicle, (SCALAR) frameTime]
+ *
+ * MFD slots written here:
+ *   userValue 1: distance to waypoint (m)
  */
 
 params ["_vehicle", "_frameTime"];
 
-
-if ((count customWaypointPosition) > 0) then {
-    _vehicle setUserMFDValue [1, _vehicle distance2D customWaypointPosition];
+private _position = if (customWaypointPosition isNotEqualTo []) then {
+    customWaypointPosition
 } else {
-    private _wayPoint = [group player, currentWaypoint group player];
-    private _position = waypointPosition _wayPoint;
-    _vehicle setUserMFDValue [1, _vehicle distance2D _position];
+    waypointPosition [group player, currentWaypoint group player]
 };
+
+_vehicle setUserMFDValue [1, _vehicle distance2D _position];

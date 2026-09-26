@@ -6,10 +6,11 @@ class CfgPatches {
         units[] = {};
         weapons[] = {};
         requiredVersion = REQUIRED_VERSION;
-        requiredAddons[] = {"ace_common"};
-        author = "";
-        authors[] = {"Hatchet team"};
-        authorUrl = "";
+        // CBA only. The Interaction Framework itself is CBA-only, and the
+        // vehicle addons declare their own HCT_core / HCT_interaction dependency.
+        requiredAddons[] = {"cba_main"};
+        author = AUTHOR;
+        authors[] = {"Project Hatchet"};
         VERSION_CONFIG;
     };
 };

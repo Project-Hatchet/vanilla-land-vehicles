@@ -17,13 +17,6 @@ class nav_wp_valid {
         sourceScale=2;
         sourceIndex=3;
     }; // WP_COUNT
-	
-    TEXT_MFD_R_SCALE(WP_IMPORT,0.1,LINE3,0.7,"right")
-        source="static";
-        sourceScale=2;
-        sourceIndex=3;
-				text="MICRO-DAGR IMPORT";
-    }; // WP_COUNT
 
 	SIDE_POLYGON(BTN_L1,0.088,0.2+(SIDE_BTN_SPACING*0))
 	SIDE_POLYGON(BTN_L2,0.088,0.2+(SIDE_BTN_SPACING*1))

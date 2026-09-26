@@ -6,9 +6,11 @@ class CfgPatches {
         units[] = {};
         weapons[] = {};
         requiredVersion = REQUIRED_VERSION;
-        requiredAddons[] = {};
-        author = "";
-        authors[] = {""};
+        // Pure functions; the framework calls them by name from the drivermfd
+        // module config, so no framework load-order dependency is needed here.
+        requiredAddons[] = {"hatchet_vanilla_main"};
+        author = AUTHOR;
+        authors[] = {"Project Hatchet"};
         VERSION_CONFIG;
     };
 };
